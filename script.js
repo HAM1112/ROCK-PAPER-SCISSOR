@@ -28,15 +28,27 @@ function wins(userChoice , computerChoice){
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
     result_p.innerHTML =  `${convertToWord(userChoice)} beats ${convertToWord(computerChoice)}. YOU WIN`;
+    document.getElementById(userChoice).classList.add('green-glow');
+    setTimeout(() => document.getElementById(userChoice).classList.remove('green-glow'),300);
 }
 
-function draw(){
-    console.log("draw");
+function draw(userChoice,computerChoice){
+    // userScore_span.innerHTML = userScore;
+    // computerScore_span.innerHTML = computerScore;
+    result_p.innerHTML =  `${convertToWord(userChoice)} tie to ${convertToWord(computerChoice)}. THAT'S A TIE`;
+    document.getElementById(userChoice).classList.add('gray-glow');
+    setTimeout(() => document.getElementById(userChoice).classList.remove('gray-glow'),300);
 }
 
-function lose(){
-    //computerScore++;
+function lose(userChoice,computerChoice){
+    computerScore++;
+    userScore_span.innerHTML = userScore;
+    computerScore_span.innerHTML = computerScore;
+    result_p.innerHTML =  `${convertToWord(userChoice)} loses to ${convertToWord(computerChoice)}. YOU LOST`;
+    document.getElementById(userChoice).classList.add('red-glow');
+    setTimeout(() => document.getElementById(userChoice).classList.remove('red-glow'),300);
 }
+
 
 
 
@@ -58,6 +70,10 @@ function game(userChoice){
     (userChoice == 's' && computerChoice == 'r')){
 
         lose(userChoice, computerChoice);
+    }
+
+    if(userScore == 5 || computerScore == 5) {
+        console.log("computer wins");
     }
 
 }
